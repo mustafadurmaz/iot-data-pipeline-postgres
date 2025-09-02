@@ -1,8 +1,12 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import configuration from './config/configuration';
+import { Module } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { EventEmitterModule } from '@nestjs/event-emitter';
+
+import configuration from "./config/configuration";
+import { IotData } from "./iot-data/iot-data.entity";
+import { IotDataModule } from "./iot-data/iot-data.module";
+import { RabbitMQModule } from './rabbitmq/rabbitmq.module';
 
 @Module({
   imports: [
@@ -10,8 +14,18 @@ import configuration from './config/configuration';
       isGlobal: true,
       load: [configuration],
     }),
+    TypeOrmModule.forRootAsync({
+      useFactory: (configService: ConfigService) => ({
+        ...configService.get("database"),
+        entities: [IotData],
+      }),
+      inject: [ConfigService],
+    }),
+    IotDataModule,
+    EventEmitterModule.forRoot(),
+    RabbitMQModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
