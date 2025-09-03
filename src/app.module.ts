@@ -7,6 +7,7 @@ import configuration from "./config/configuration";
 import { IotData } from "./iot-data/iot-data.entity";
 import { IotDataModule } from "./iot-data/iot-data.module";
 import { RabbitMQModule } from './rabbitmq/rabbitmq.module';
+import { IotProducerModule } from './iot-producer/iot-producer.module'; 
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { RabbitMQModule } from './rabbitmq/rabbitmq.module';
     IotDataModule,
     EventEmitterModule.forRoot(),
     RabbitMQModule,
+    IotProducerModule
   ],
   controllers: [],
   providers: [],
