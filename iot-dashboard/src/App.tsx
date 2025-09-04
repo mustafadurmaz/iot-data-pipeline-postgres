@@ -54,10 +54,7 @@ const App: React.FC = () => {
 
       setRealtimeData((prevData) => {
         const updated = [newData, ...prevData].slice(0, 50);
-        return updated.sort(
-          (a, b) =>
-            new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-        );
+        return updated;
       });
     };
 
@@ -112,9 +109,9 @@ const App: React.FC = () => {
   return (
     <Container sx={{ mt: 4 }}>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={4} component="div">
+        <Grid item xs={12} md={4}>
           <DashboardCard
-            title="Canlı Sıcaklık"
+            title="Sıcaklık"
             icon="🌡️"
             color="#36A2EB"
             unit="°C"
@@ -124,9 +121,9 @@ const App: React.FC = () => {
             chartOptions={chartOptions}
           />
         </Grid>
-        <Grid item xs={12} md={4} component="div">
+        <Grid item xs={12} md={4}>
           <DashboardCard
-            title="Canlı Nem"
+            title="Nem"
             icon="💧"
             color="#4BC0C0"
             unit="%"
@@ -136,9 +133,9 @@ const App: React.FC = () => {
             chartOptions={chartOptions}
           />
         </Grid>
-        <Grid item xs={12} md={4} component="div">
+        <Grid item xs={12} md={4}>
           <DashboardCard
-            title="Canlı Basınç"
+            title="Basınç"
             icon="🌀"
             color="#9966FF"
             unit="hPa"
@@ -150,7 +147,7 @@ const App: React.FC = () => {
         </Grid>
       </Grid>
 
-      <DashboardTable data={latestData} />
+      <DashboardTable data={realtimeData} />
     </Container>
   );
 };

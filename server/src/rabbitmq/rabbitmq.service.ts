@@ -94,8 +94,9 @@ export class RabbitMQService implements OnModuleInit, OnModuleDestroy {
 
       try {
         const content = JSON.parse(msg.content.toString());
-        const savedData = await this.iotDataService.create(content);
-        this.eventEmitter.emit("new.iot.data", savedData);
+        // const savedData = await this.iotDataService.create(content);
+        // this.eventEmitter.emit("new.iot.data", savedData);
+        this.eventEmitter.emit("new.iot.data", content);
         this.channel?.ack(msg);
       } catch (error: any) {
         this.logger.error("Error processing message: " + error.message);
