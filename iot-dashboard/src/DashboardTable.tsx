@@ -17,13 +17,10 @@ import {
   const DashboardTable: React.FC<DashboardTableProps> = ({ data }) => {
     return (
       <TableContainer component={Paper} sx={{ mt: 4 }}>
-        <Typography variant="h6" sx={{ p: 2 }}>
-          Son 100 Kayıt
-        </Typography>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
+              {/* <TableCell>ID</TableCell> */}
               <TableCell>Sensör ID</TableCell>
               <TableCell>Sıcaklık (°C)</TableCell>
               <TableCell>Nem (%)</TableCell>
@@ -34,7 +31,7 @@ import {
           <TableBody>
             {data.map((row) => (
               <TableRow key={row.id}>
-                <TableCell>{row.id}</TableCell>
+                {/* <TableCell>{row.id}</TableCell> */}
                 <TableCell>{row.sensorId}</TableCell>
                 <TableCell sx={{ color: "blue" }}>{row.temperature}</TableCell>
                 <TableCell sx={{ color: "green" }}>{row.humidity}</TableCell>
